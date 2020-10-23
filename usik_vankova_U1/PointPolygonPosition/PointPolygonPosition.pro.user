@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.13.1, 2020-10-23T23:07:42. -->
+<!-- Written by QtCreator 4.13.1, 2020-10-23T23:19:50. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -325,8 +325,9 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/UNIVERZITA/Ing/3_semestr/ADKI/domaci_ulohy/U1/PointPolygonPosition_final/PointPolygonPosition_OK/PointPolygonPosition.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">D:/UNIVERZITA/Ing/3_semestr/ADKI/domaci_ulohy/U1/PointPolygonPosition_final/PointPolygonPosition_OK/PointPolygonPosition.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">PointPolygonPosition2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/UNIVERZITA/Ing/3_semestr/ADKI/GitHub/ADKI/usik_vankova_U1/PointPolygonPosition/PointPolygonPosition.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">D:/UNIVERZITA/Ing/3_semestr/ADKI/GitHub/ADKI/usik_vankova_U1/PointPolygonPosition/PointPolygonPosition.pro</value>
     <value type="QString" key="RunConfiguration.Arguments"></value>
     <value type="bool" key="RunConfiguration.Arguments.multi">false</value>
     <value type="QString" key="RunConfiguration.OverrideDebuggerStartup"></value>
