@@ -12,15 +12,19 @@ SOURCES += \
     algorithms.cpp \
     draw.cpp \
     main.cpp \
+    sortbyangle.cpp \
     sortbyx.cpp \
     sortbyy.cpp \
+    uniquepoints.cpp \
     widget.cpp
 
 HEADERS += \
     algorithms.h \
     draw.h \
+    sortbyangle.h \
     sortbyx.h \
     sortbyy.h \
+    uniquepoints.h \
     widget.h
 
 FORMS += \

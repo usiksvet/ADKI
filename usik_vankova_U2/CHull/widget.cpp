@@ -36,7 +36,9 @@ void Widget::on_pushButton_clicked()
                 break;
         case 1: ch = alg.qhull(points);
                 break;
-        case 2: qDebug() << "Sweep line";
+        case 2: ch = alg.sweepLine(points);
+                break;
+        case 3: ch = alg.graham(points);
                 break;
     }
 
@@ -94,8 +96,35 @@ void Widget::on_generatePoints_clicked()
                 break;
     }
 
+    //Get Convex Hull
+    QPolygon &ch = ui->Canvas->getCH();
+
+    //Clear points CH
+    ch.clear();
+
     ui->Canvas->generatePoints(n, width, height, type);
 
     qDebug() << ui->comboBox->currentIndex();
 
+
+
+
+}
+
+void Widget::on_pushButton_3_clicked()
+{
+    //Get Convex Hull
+    QPolygon &ch = ui->Canvas->getCH();
+
+    //Get Points
+    std::vector<QPoint> &points = ui->Canvas->getPoints();
+
+    //Clear points CH
+    ch.clear();
+
+    //Clear points
+    points.clear();
+
+    //Repaint screen
+    repaint();
 }

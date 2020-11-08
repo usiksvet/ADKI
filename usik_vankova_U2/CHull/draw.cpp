@@ -115,8 +115,6 @@ void Draw::generatePoints(int num_points, int w, int h, int type)
         }
 
     }
+        repaint();
 
-    repaint();
 }
-
-

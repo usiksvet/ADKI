@@ -22,6 +22,7 @@ class Draw : public QWidget
         void setCH(QPolygon &ch_){ch = ch_;}
         void generatePoints(int num_points, int w, int h, int type);
 
+
 signals:
 
 };

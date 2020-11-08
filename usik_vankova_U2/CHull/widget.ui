@@ -137,6 +137,11 @@
          <string>Sweep Line</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>Graham Scan</string>
+        </property>
+       </item>
       </widget>
      </item>
      <item>
