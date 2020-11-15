@@ -19,7 +19,7 @@ double Algorithms::getAngle(QPoint &q1, QPoint &q2, QPoint &q3, QPoint &q4)
     double vx = q4.x()-q3.x();
     double vy = q4.y()-q3.y();
 
-    double angle = acos((ux*vx + uy*vy)/(sqrt(ux*ux + uy*uy)*sqrt(vx*vx + vy*vy)));
+    double angle = fabs(acos((ux*vx + uy*vy)/(sqrt(ux*ux + uy*uy)*sqrt(vx*vx + vy*vy))));
     return angle;
 }
 
@@ -37,10 +37,11 @@ int Algorithms::getPointLinePosition(QPoint &q,QPoint &p1,QPoint &p2)
 
     double t = ux * vy - uy * vx;
 
+    double TOL = 1e-6;
     //Point in the left half plane
-    if (t>0)
+    if (t > TOL)
         return 1;
-    if (t<0)
+    if (t < -TOL)
         return 0;
     return -1;
 }
@@ -92,19 +93,28 @@ QPolygon Algorithms::jarvis(std::vector<QPoint> &points)
         //Initialize i_max, om_max
         int i_max = -1;
         double o_max = 0;
-
+        double TOL = 1e-6;
         //Find suitable point maximazing angle omega
         for (unsigned int i = 0; i < points.size(); i++)
         {
-
             //Compute omega
             double omega = getAngle(pj, pjj, pj, points[i]);
 
             //Actualize maximum
-            if(omega > o_max)
+            if((omega - o_max) >= TOL)
             {
                 o_max = omega;
                 i_max = i;
+            }
+            else if (fabs(omega - o_max) < TOL)
+            {
+                double distance_i = distancePoints(pj, points[i]);
+                double distance_imax = distancePoints(pj, points[i_max]);
+                if (distance_i > distance_imax)
+                {
+                    o_max = omega;
+                    i_max = i;
+                }
             }
         }
 
@@ -179,16 +189,14 @@ QPolygon Algorithms::graham(std::vector<QPoint> &points)
     //Sort points according to y coordinate
     std::sort(points.begin(), points.end(), sortByY());
 
-    //Find pivot with min x
+
+    //Find pivot with min y - solve non singular situation
     unsigned int i_min = 0;
     for (unsigned int i = 1; i <points.size(); i++)
     {
         if(points[0].y() == points[i].y())
         {
-            if(points[i].x() < points[0].x())
-            {
                 i_min = i;
-            }
         }
     }
 
@@ -208,7 +216,7 @@ QPolygon Algorithms::graham(std::vector<QPoint> &points)
         pad.point.setX(points[i].x());
         pad.point.setY(points[i].y());
 
-        if(points[i] == q)
+        if(q == points[i])
         {
             pad.angle = 0;
             pad.dist = 0;
@@ -225,21 +233,50 @@ QPolygon Algorithms::graham(std::vector<QPoint> &points)
     //Firstly sort by angle, if anles equal sort by dist
     std::sort(angles.begin(), angles.end(), sortByAngle());
 
-//    QPolygon polAngles;
-//    polAngles.push_back(angles[0].point);
-//    polAngles.push_back(angles[1].point);
+    //To save star shaped polygon
+    QPolygon star;
 
-    ch.push_back(angles[1].point);
-    for (unsigned int i = 2; i < angles.size(); i++)
+    angles.push_back(angles[angles.size()]);
+
+    star.push_back(angles[0].point);
+
+
+    //Solve singularity - points with same angle and different distance
+    double help_angel = 0;
+    double help_dist = 0;
+    for(unsigned int i = 0; i < angles.size(); i++)
     {
-        if (getPointLinePosition(ch[ch.size()-1], ch[ch.size()-2], angles[i].point) == 0)
+        double TOL = 1.0e-6;
+        if(fabs(angles[i].angle - help_angel) < TOL) //If angle is the same
         {
-            ch.pop_back();
+            if(angles[i].dist > help_dist) //If distance of new point is bigger, new point win and go to new cycle with this point
+            {
+                help_dist = angles[i].dist; //Move to next point
+                help_angel = angles[i].angle; //Move to next point
+            }
         }
         else
         {
-            ch.push_back(angles[i].point);
+            help_dist = angles[i].dist; //Move to next point
+            help_angel = angles[i].angle; //Move to next point
+            star.push_back(angles[i-1].point); //Save point to star-shaped polygon
         }
+    }
+
+    ch.push_back(star[1]);  //First point with smallest angle, after pivot
+
+    //Make convex hull from non-convex star-shape
+    for (int i = 2; i < star.size();)
+    {
+            if (getPointLinePosition(ch[ch.size()-1], ch[ch.size()-2], star[i]) == 0)
+            {
+                ch.pop_back(); //Give avay non-convex point, dont move to next i (dont do i++), because point i+1 move to i position so we need to use for cyclus again for the same i
+            }
+            else
+            {
+                ch.push_back(star[i]);
+                i++;
+            }
     }
 
     QPolygon fix_ch = fixPolygon(ch);
@@ -254,6 +291,22 @@ QPolygon Algorithms::sweepLine(std::vector<QPoint> &points)
 
     //Sort points by X
     std::sort(points.begin(),points.end(), sortByX());
+
+    //Solve duplicit points - find just non duplicit points
+    std::vector<QPoint> nonDuplicit;
+    for(unsigned int i =0; i<points.size() - 1; i++)
+    {
+        if((points[i].x()!=points[i+1].x()) || (points[i].y()!=points[i+1].y())) //if coord. x are not the same or y are not the same its not the same point
+        {
+                nonDuplicit.push_back(points[i]);
+        }
+    }
+    //Last point
+    nonDuplicit.push_back(points[points.size() - 1]);
+    points = nonDuplicit; //save to points
+
+
+
 
     //Create lists of predecessors and successors
     int m = points.size();

@@ -94,6 +94,12 @@ void Widget::on_generatePoints_clicked()
         case 2: type = 2;
                 qDebug() << type;
                 break;
+        case 3: type = 3; //Ellipse
+                qDebug() << type;
+                break;
+        case 4: type = 4; //Square
+                qDebug() << type;
+                break;
     }
 
     //Get Convex Hull
