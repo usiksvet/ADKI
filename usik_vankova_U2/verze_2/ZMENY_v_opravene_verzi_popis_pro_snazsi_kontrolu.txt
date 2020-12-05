@@ -1,0 +1,8 @@
+Označení '.1' = opravená verze.
+
+Změny v TZ:
+kapitola 6 doplněna a rozdělena na podkapitoly
+dodána podkapitola 7.1
+
+Změny v aplikaci:
+draw.cpp - přidán kód na řádcích 45-52
