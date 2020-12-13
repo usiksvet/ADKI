@@ -11,7 +11,7 @@ Algorithms::Algorithms()
 
 }
 
-double Algorithms::getAngle(QPoint &q1, QPoint &q2, QPoint &q3, QPoint &q4)
+double Algorithms::getAngle(QPointF &q1, QPointF &q2, QPointF &q3, QPointF &q4)
 {
     double ux = q2.x()-q1.x();
     double uy = q2.y()-q1.y();
@@ -23,7 +23,7 @@ double Algorithms::getAngle(QPoint &q1, QPoint &q2, QPoint &q3, QPoint &q4)
     return angle;
 }
 
-int Algorithms::getPointLinePosition(QPoint &q,QPoint &p1,QPoint &p2)
+int Algorithms::getPointLinePosition(QPointF &q,QPointF &p1,QPointF &p2)
 {
     //Analyze point and line position
     //1 point in the left half plane
@@ -46,7 +46,7 @@ int Algorithms::getPointLinePosition(QPoint &q,QPoint &p1,QPoint &p2)
     return -1;
 }
 
-double Algorithms::getPointLineDist(QPoint &a,QPoint &p1,QPoint &p2)
+double Algorithms::getPointLineDist(QPointF &a,QPointF &p1,QPointF &p2)
 {
     //Compute distance of point a from line p(p1, p2)
     double numerator = a.x()* (p1.y() - p2.y()) + p1.x()*(p2.y() - a.y()) +
@@ -59,7 +59,7 @@ double Algorithms::getPointLineDist(QPoint &a,QPoint &p1,QPoint &p2)
     //Point and line distance
     return fabs(numerator)/sqrt(dx*dx + dy*dy);
 }
-double Algorithms::distancePoints(QPoint &p1, QPoint &p2)
+double Algorithms::distancePoints(QPointF &p1, QPointF &p2)
 {
     double dx = p2.x() - p1.x();
     double dy = p2.y() - p1.y();
@@ -67,26 +67,26 @@ double Algorithms::distancePoints(QPoint &p1, QPoint &p2)
     return d;
 }
 
-QPolygon Algorithms::jarvis(std::vector<QPoint> &points)
+QPolygonF Algorithms::jarvis(std::vector<QPointF> &points)
 {
     //Create Convex Hull using Jarvis Scan Algoritms
-    QPolygon ch;
+    QPolygonF ch;
 
     //1 - Sort points by Y
     std::sort(points.begin(), points.end(), sortByY());
 
     //2 - Create q
-    QPoint q=points[0];
+    QPointF q=points[0];
 
     //3 - Create r
-    QPoint r(0,q.y());
+    QPointF r(0,q.y());
 
     //4 - Add q into Convex Hull
     ch.push_back(q);
 
     //5 - Initialize pj, pjj
-    QPoint pj = q; //pivot
-    QPoint pjj = r;
+    QPointF pj = q; //pivot
+    QPointF pjj = r;
 
     //Find all points of Convex Hull
     do {
@@ -127,23 +127,23 @@ QPolygon Algorithms::jarvis(std::vector<QPoint> &points)
 
     } while((pj != q));
 
-    QPolygon fix_ch = fixPolygon(ch);
+    QPolygonF fix_ch = fixPolygon(ch);
     return fix_ch;
 
 }
 
-QPolygon Algorithms::qhull(std::vector<QPoint> &points)
+QPolygonF Algorithms::qhull(std::vector<QPointF> &points)
 {
     //Create Convex Hull using QHull Algorithm (Global procedure)
-    QPolygon ch;
-    std::vector<QPoint> upoints, lpoints;
+    QPolygonF ch;
+    std::vector<QPointF> upoints, lpoints;
 
     //Sort points according to x coordinate
     std::sort(points.begin(), points.end(), sortByX());
 
     //Create q1, q3
-    QPoint q1 = points[0];
-    QPoint q3 = points.back();
+    QPointF q1 = points[0];
+    QPointF q3 = points.back();
 
     //Add q1, q3 to upoints/lpoints
     upoints.push_back(q1);
@@ -175,14 +175,14 @@ QPolygon Algorithms::qhull(std::vector<QPoint> &points)
     //Recursion for lpoints
     qh(0, 1, lpoints,ch);
 
-    QPolygon fix_ch = fixPolygon(ch);
+    QPolygonF fix_ch = fixPolygon(ch);
     return fix_ch;
 }
 
-QPolygon Algorithms::graham(std::vector<QPoint> &points)
+QPolygonF Algorithms::graham(std::vector<QPointF> &points)
 {
     //Create Convex Hull using Graham Algorithm
-    QPolygon ch;
+    QPolygonF ch;
     std::vector<Angle> angles;
 
 
@@ -200,12 +200,12 @@ QPolygon Algorithms::graham(std::vector<QPoint> &points)
         }
     }
 
-    QPoint q = points[i_min];
+    QPointF q = points[i_min];
     ch.push_back(q);
 
     //Create supporting point s
     std::sort(points.begin(), points.end(), sortByX());
-    QPoint s(points[0].x(), q.y());
+    QPointF s(points[0].x(), q.y());
 
     //Calculate angle and distance between axe x and i-point
     Angle pad;
@@ -234,7 +234,7 @@ QPolygon Algorithms::graham(std::vector<QPoint> &points)
     std::sort(angles.begin(), angles.end(), sortByAngle());
 
     //To save star shaped polygon
-    QPolygon star;
+    QPolygonF star;
 
     angles.push_back(angles[angles.size()]);
 
@@ -279,21 +279,21 @@ QPolygon Algorithms::graham(std::vector<QPoint> &points)
             }
     }
 
-    QPolygon fix_ch = fixPolygon(ch);
+    QPolygonF fix_ch = fixPolygon(ch);
     return fix_ch;
 }
 
 
-QPolygon Algorithms::sweepLine(std::vector<QPoint> &points)
+QPolygonF Algorithms::sweepLine(std::vector<QPointF> &points)
 {
     //Create Convex Hull using Sweep Line Algorithm
-    QPolygon ch;
+    QPolygonF ch;
 
     //Sort points by X
     std::sort(points.begin(),points.end(), sortByX());
 
     //Solve duplicit points - find just non duplicit points
-    std::vector<QPoint> nonDuplicit;
+    std::vector<QPointF> nonDuplicit;
     for(unsigned int i =0; i<points.size() - 1; i++)
     {
         if((points[i].x()!=points[i+1].x()) || (points[i].y()!=points[i+1].y())) //if coord. x are not the same or y are not the same its not the same point
@@ -373,11 +373,11 @@ QPolygon Algorithms::sweepLine(std::vector<QPoint> &points)
         index = n[index];
      }
 
-    QPolygon fix_ch = fixPolygon(ch);
+    QPolygonF fix_ch = fixPolygon(ch);
     return fix_ch;
 }
 
-void Algorithms::qh(int s, int e, std::vector<QPoint> &points, QPolygon &ch)
+void Algorithms::qh(int s, int e, std::vector<QPointF> &points, QPolygonF &ch)
 {
     //Create Convex Hull using QHull Algorithm (Local procedure)
     int i_max = -1;
@@ -414,7 +414,7 @@ void Algorithms::qh(int s, int e, std::vector<QPoint> &points, QPolygon &ch)
     }
 }
 
- QPolygon Algorithms::fixPolygon(QPolygon &ch)
+ QPolygonF Algorithms::fixPolygon(QPolygonF &ch)
  {
      //Sort by unique point value
      auto end = std::unique(ch.begin(), ch.end(), uniquePoints());

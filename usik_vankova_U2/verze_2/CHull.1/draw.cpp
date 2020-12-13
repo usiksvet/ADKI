@@ -16,7 +16,7 @@ void Draw::mousePressEvent(QMouseEvent *e)
     int y = e->y();
 
     //Add point to the list
-    QPoint q(x, y); //vytvorim bod
+    QPointF q(x, y); //vytvorim bod
     points.push_back(q); //pridam do seznamu bodu
 
     //Repaint screen
@@ -59,7 +59,7 @@ void Draw::paintEvent(QPaintEvent *e)
 
 void Draw::generatePoints(int num_points, int w, int h, int type)
 {
-    QPoint point;
+    QPointF point;
     points.clear();
 
     if(num_points<=0)
@@ -71,12 +71,19 @@ void Draw::generatePoints(int num_points, int w, int h, int type)
     else
     {
         //Generate points randomly
+        int k = 50;
+        w = w*k;
+        h = h*k;
+
         if (type == 0)
         {
             for(int i = 0; i < num_points; i++)
             {
-                point.setX(rand()%(w-20)+10); //generate random value from 10 to w-10 (moved from the edge because of visibility)
-                point.setY(rand()%(h-20)+10); //generate random value from 10 to h-10
+//                point.setX(rand()%(w - 20) + 10); //generate random value from 10 to w-10 (moved from the edge because of visibility)
+//                point.setY(rand()%(h - 20) + 10); //generate random value from 10 to h-10
+                point.setX(rand()%w);
+                point.setY(rand()%h);
+
                 points.push_back(point);
             }
         }
@@ -139,7 +146,7 @@ void Draw::generatePoints(int num_points, int w, int h, int type)
                 }
 
                 //Circle center in the middle of canvas
-                QPoint centr(w/2, h/2);
+                QPointF centr(w/2, h/2);
 
                 //Circle radius
                 int delta = 10;
@@ -171,13 +178,13 @@ void Draw::generatePoints(int num_points, int w, int h, int type)
                 //Ellipse center
                 int three_wide = w/3;
                 int three_height = h/3;
-                QPoint center(rand()%three_wide+three_wide,rand()%three_height+three_height);
+                QPointF center(rand()%three_wide+three_wide,rand()%three_height+three_height);
 
                 //Generate length of axis
                 double a = rand()%three_wide+1;
                 double b = rand()%three_height+1;
                 double fi = (2*M_PI)/num_points;
-                QPoint q;
+                QPointF q;
 
                 //Points on ellipse
                 for(int i = 0; i < num_points; i++)
@@ -208,7 +215,7 @@ void Draw::generatePoints(int num_points, int w, int h, int type)
                 //Left up corner
                 double lcx = rand()%(w-70)+10;
                 double lcy = rand()%(h-70)+10;
-                QPoint p(lcx,lcy);
+                QPointF p(lcx,lcy);
                 int pom;
                 if (w-lcx > h-lcy)
                 {
@@ -220,9 +227,9 @@ void Draw::generatePoints(int num_points, int w, int h, int type)
                 }
                 int length = rand()%(pom-30)+20;
                 //Other corners
-                QPoint p1(p.x()+(length),p.y());
-                QPoint p2(p.x()+(length),p.y()+(length));
-                QPoint p3(p.x(),(p.y()+length));
+                QPointF p1(p.x()+(length),p.y());
+                QPointF p2(p.x()+(length),p.y()+(length));
+                QPointF p3(p.x(),(p.y()+length));
                 points.push_back(p);
                 points.push_back(p1);
                 points.push_back(p2);
@@ -231,10 +238,10 @@ void Draw::generatePoints(int num_points, int w, int h, int type)
                 int part = (length)/(num_points/4); //Distance between other points
                 for(int i = 0; i < num_points/4; i++)
                 {
-                    points.push_back(QPoint(p1.x()-((i*part)),p1.y()));
-                    points.push_back(QPoint(p2.x(),p2.y()-(i*part)));
-                    points.push_back(QPoint(p3.x()+((i*part)),p3.y()));
-                    points.push_back(QPoint(p.x(),p.y()+(i*part)));
+                    points.push_back(QPointF(p1.x()-((i*part)),p1.y()));
+                    points.push_back(QPointF(p2.x(),p2.y()-(i*part)));
+                    points.push_back(QPointF(p3.x()+((i*part)),p3.y()));
+                    points.push_back(QPointF(p.x(),p.y()+(i*part)));
                 }
             }
         }

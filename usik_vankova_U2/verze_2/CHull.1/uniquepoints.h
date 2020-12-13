@@ -7,7 +7,7 @@ class uniquePoints
 {
 public:
     //Sorter by unique point value
-    bool operator () (QPoint &p1, QPoint &p2)
+    bool operator () (QPointF &p1, QPointF &p2)
     {
         double tol = 1e-6;
         if ((abs(p1.x() - p2.x()) < tol) && (abs(p1.y() - p2.y()) < tol))

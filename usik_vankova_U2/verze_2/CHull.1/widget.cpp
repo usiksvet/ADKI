@@ -20,10 +20,10 @@ Widget::~Widget()
 void Widget::on_pushButton_clicked()
 {
     //Get points
-    std::vector<QPoint> points = ui->Canvas->getPoints();
+    std::vector<QPointF> points = ui->Canvas->getPoints();
 
     //Create convex hull
-    QPolygon ch;
+    QPolygonF ch;
     Algorithms alg;
 
     //Start timer
@@ -57,7 +57,7 @@ void Widget::on_pushButton_clicked()
 void Widget::on_pushButton_2_clicked()
 {
     //Get Convex Hull
-    QPolygon &ch = ui->Canvas->getCH();
+    QPolygonF &ch = ui->Canvas->getCH();
 
     //Clear points
     ch.clear();
@@ -103,7 +103,7 @@ void Widget::on_generatePoints_clicked()
     }
 
     //Get Convex Hull
-    QPolygon &ch = ui->Canvas->getCH();
+    QPolygonF &ch = ui->Canvas->getCH();
 
     //Clear points CH
     ch.clear();
@@ -120,10 +120,10 @@ void Widget::on_generatePoints_clicked()
 void Widget::on_pushButton_3_clicked()
 {
     //Get Convex Hull
-    QPolygon &ch = ui->Canvas->getCH();
+    QPolygonF &ch = ui->Canvas->getCH();
 
     //Get Points
-    std::vector<QPoint> &points = ui->Canvas->getPoints();
+    std::vector<QPointF> &points = ui->Canvas->getPoints();
 
     //Clear points CH
     ch.clear();
