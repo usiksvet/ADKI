@@ -221,3 +221,10 @@ void Widget::on_clearAll_clicked()
     repaint();
 
 }
+
+void Widget::on_lineEdit_4_cursorPositionChanged(int arg1, int arg2)
+{
+    //Set Z
+    z_clicked = ui -> lineEdit_4 -> text().toDouble();
+    ui->Canvas->setZClicked(z_clicked);
+}

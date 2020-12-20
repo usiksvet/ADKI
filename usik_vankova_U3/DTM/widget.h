@@ -12,6 +12,7 @@ class Widget : public QWidget
     Q_OBJECT
 private:
     double z_min, z_max, dz;
+    double z_clicked;
 
 public:
     Widget(QWidget *parent = nullptr);
@@ -38,6 +39,8 @@ private slots:
     void on_clearPoints_clicked();
 
     void on_clearAll_clicked();
+
+    void on_lineEdit_4_cursorPositionChanged(int arg1, int arg2);
 
 private:
     Ui::Widget *ui;

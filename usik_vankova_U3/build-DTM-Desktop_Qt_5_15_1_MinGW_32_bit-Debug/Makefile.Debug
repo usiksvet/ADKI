@@ -477,9 +477,10 @@ debug/moc_draw.cpp: ../DTM/draw.h \
 		C:/Qt/5.15.1/mingw81_32/include/QtGui/qtguiversion.h \
 		../DTM/edge.h \
 		../DTM/triangle.h \
+		../DTM/widget.h \
 		debug/moc_predefs.h \
 		C:/Qt/5.15.1/mingw81_32/bin/moc.exe
-	C:\Qt\5.15.1\mingw81_32\bin\moc.exe $(DEFINES) --include D:/UNIVERZITA/Ing/3_semestr/ADKI/GitHub/ADKI/usik_vankova_U3/build-DTM-Desktop_Qt_5_15_1_MinGW_32_bit-Debug/debug/moc_predefs.h -IC:/Qt/5.15.1/mingw81_32/mkspecs/win32-g++ -ID:/UNIVERZITA/Ing/3_semestr/ADKI/GitHub/ADKI/usik_vankova_U3/DTM -IC:/Qt/5.15.1/mingw81_32/include -IC:/Qt/5.15.1/mingw81_32/include/QtWidgets -IC:/Qt/5.15.1/mingw81_32/include/QtGui -IC:/Qt/5.15.1/mingw81_32/include/QtANGLE -IC:/Qt/5.15.1/mingw81_32/include/QtCore -I. -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_32/i686-w64-mingw32/include ..\DTM\draw.h -o debug\moc_draw.cpp
+	C:\Qt\5.15.1\mingw81_32\bin\moc.exe $(DEFINES) --include D:/UNIVERZITA/Ing/3_semestr/ADKI/U3/build-DTM-Desktop_Qt_5_15_1_MinGW_32_bit-Debug/debug/moc_predefs.h -IC:/Qt/5.15.1/mingw81_32/mkspecs/win32-g++ -ID:/UNIVERZITA/Ing/3_semestr/ADKI/U3/DTM -IC:/Qt/5.15.1/mingw81_32/include -IC:/Qt/5.15.1/mingw81_32/include/QtWidgets -IC:/Qt/5.15.1/mingw81_32/include/QtGui -IC:/Qt/5.15.1/mingw81_32/include/QtANGLE -IC:/Qt/5.15.1/mingw81_32/include/QtCore -I. -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_32/i686-w64-mingw32/include ..\DTM\draw.h -o debug\moc_draw.cpp
 
 debug/moc_widget.cpp: ../DTM/widget.h \
 		C:/Qt/5.15.1/mingw81_32/include/QtWidgets/QWidget \
@@ -587,7 +588,7 @@ debug/moc_widget.cpp: ../DTM/widget.h \
 		C:/Qt/5.15.1/mingw81_32/include/QtGui/qtouchdevice.h \
 		debug/moc_predefs.h \
 		C:/Qt/5.15.1/mingw81_32/bin/moc.exe
-	C:\Qt\5.15.1\mingw81_32\bin\moc.exe $(DEFINES) --include D:/UNIVERZITA/Ing/3_semestr/ADKI/GitHub/ADKI/usik_vankova_U3/build-DTM-Desktop_Qt_5_15_1_MinGW_32_bit-Debug/debug/moc_predefs.h -IC:/Qt/5.15.1/mingw81_32/mkspecs/win32-g++ -ID:/UNIVERZITA/Ing/3_semestr/ADKI/GitHub/ADKI/usik_vankova_U3/DTM -IC:/Qt/5.15.1/mingw81_32/include -IC:/Qt/5.15.1/mingw81_32/include/QtWidgets -IC:/Qt/5.15.1/mingw81_32/include/QtGui -IC:/Qt/5.15.1/mingw81_32/include/QtANGLE -IC:/Qt/5.15.1/mingw81_32/include/QtCore -I. -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_32/i686-w64-mingw32/include ..\DTM\widget.h -o debug\moc_widget.cpp
+	C:\Qt\5.15.1\mingw81_32\bin\moc.exe $(DEFINES) --include D:/UNIVERZITA/Ing/3_semestr/ADKI/U3/build-DTM-Desktop_Qt_5_15_1_MinGW_32_bit-Debug/debug/moc_predefs.h -IC:/Qt/5.15.1/mingw81_32/mkspecs/win32-g++ -ID:/UNIVERZITA/Ing/3_semestr/ADKI/U3/DTM -IC:/Qt/5.15.1/mingw81_32/include -IC:/Qt/5.15.1/mingw81_32/include/QtWidgets -IC:/Qt/5.15.1/mingw81_32/include/QtGui -IC:/Qt/5.15.1/mingw81_32/include/QtANGLE -IC:/Qt/5.15.1/mingw81_32/include/QtCore -I. -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_32/lib/gcc/i686-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_32/i686-w64-mingw32/include ..\DTM\widget.h -o debug\moc_widget.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -940,7 +941,8 @@ ui_widget.h: ../DTM/widget.ui \
 		C:/Qt/5.15.1/mingw81_32/include/QtGui/qvalidator.h \
 		C:/Qt/5.15.1/mingw81_32/include/QtGui/qtguiversion.h \
 		../DTM/edge.h \
-		../DTM/triangle.h
+		../DTM/triangle.h \
+		../DTM/widget.h
 	C:\Qt\5.15.1\mingw81_32\bin\uic.exe ..\DTM\widget.ui -o ui_widget.h
 
 compiler_yacc_decl_make_all:
@@ -1638,7 +1640,8 @@ debug/draw.o: ../DTM/draw.cpp ../DTM/draw.h \
 		C:/Qt/5.15.1/mingw81_32/include/QtGui/qvalidator.h \
 		C:/Qt/5.15.1/mingw81_32/include/QtGui/qtguiversion.h \
 		../DTM/edge.h \
-		../DTM/triangle.h
+		../DTM/triangle.h \
+		../DTM/widget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\draw.o ..\DTM\draw.cpp
 
 debug/edge.o: ../DTM/edge.cpp ../DTM/edge.h \

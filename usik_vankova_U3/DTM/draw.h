@@ -7,6 +7,7 @@
 #include "qpoint3d.h"
 #include "edge.h"
 #include "triangle.h"
+#include <widget.h>
 
 class Draw : public QWidget
 {
@@ -19,7 +20,7 @@ private:
     std::vector <Triangle> dtm;
     std::vector<int> contours_z; // store contour line height
     bool slope, aspect;
-
+    double z_clicked;
 
 public:
     explicit Draw(QWidget *parent = nullptr);
@@ -38,8 +39,8 @@ public:
     void importData(std::string &path, std::vector<QPoint3D> &points,  QSizeF &canvas_size, double &min_z, double &max_z);
     void setSlope(bool &slope_){slope = slope_;}// Flags to indicate type of analysis
     void setAspect(bool &aspect_){aspect = aspect_;}// Flags to indicate type of analysis
-
-
+    void setZClicked(double z){z_clicked = z;}
+    double getZClicked(){return z_clicked;}
 signals:
 
 public slots:

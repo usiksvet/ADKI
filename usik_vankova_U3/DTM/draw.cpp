@@ -1,5 +1,7 @@
 #include "draw.h"
 #include <fstream>
+#include <widget.h>
+
 
 Draw::Draw(QWidget *parent) : QWidget(parent)
 {
@@ -113,12 +115,10 @@ void Draw::mousePressEvent(QMouseEvent *event)
     QPoint3D p;
     p.setX(event ->x());
     p.setY(event ->y());
-    double random = std::rand() * 200.0 / RAND_MAX;
-    p.setZ(random);
-
-    //Add point to the list
+    double z;
+    z = getZClicked();
+    p.setZ(z);
     points.push_back(p);
-
     repaint();
 };
 
@@ -132,15 +132,16 @@ void Draw::importData(std::string &path, std::vector<QPoint3D> &points,  QSizeF 
     max_z = std::numeric_limits<double>::min();
     double min_x = std::numeric_limits<double>::max();
     double min_y = std::numeric_limits<double>::max();
-    double max_x = std::numeric_limits<double>::min();
+    double max_x = -(std::numeric_limits<double>::max());
     double max_y = std::numeric_limits<double>::min();
 
-
     std::ifstream myfile(path);
+
     if(myfile.is_open())
     {
         while(myfile >> x >> y >> z)
         {
+            x = x*(-1);
             p.setX(x);
             p.setY(y);
             p.setZ(z);
@@ -156,20 +157,25 @@ void Draw::importData(std::string &path, std::vector<QPoint3D> &points,  QSizeF 
             if(z > max_z) max_z = z;
         }
 
+
         myfile.close();
     }
 
-    //Rescaling points to the canvas size
     double h = canvas_size.height();
     double w = canvas_size.width();
-
-    double x_coef = w/(max_x-min_x);
-    double y_coef = h/(max_y-min_y);
+    //Rescaling points to the canvas size
+    double coef;
+    if (fabs(max_x-min_x) > max_y-min_y) {
+            coef = (w-10)/(fabs(max_x-min_x));
+    }
+    else {
+            coef = (h-10)/(max_y-min_y);
+    }
 
     for(unsigned int i = 0; i < points.size(); i++)
     {
-        points[i].setX((points[i].x()-min_x)*x_coef);
-        points[i].setY((points[i].y()-min_y)*y_coef);
+        points[i].setX(((points[i].x()-min_x)*coef)+5);
+        points[i].setY(((points[i].y()-min_y)*coef)+5);
     }
 }
 

@@ -19,7 +19,7 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
-#include "draw.h"
+#include <draw.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -30,6 +30,8 @@ public:
     Draw *Canvas;
     QVBoxLayout *verticalLayout_3;
     QPushButton *loadPoints;
+    QLabel *label_4;
+    QLineEdit *lineEdit_4;
     QSpacerItem *verticalSpacer;
     QLabel *label;
     QLineEdit *lineEdit;
@@ -70,6 +72,16 @@ public:
         loadPoints->setObjectName(QString::fromUtf8("loadPoints"));
 
         verticalLayout_3->addWidget(loadPoints);
+
+        label_4 = new QLabel(Widget);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+
+        verticalLayout_3->addWidget(label_4);
+
+        lineEdit_4 = new QLineEdit(Widget);
+        lineEdit_4->setObjectName(QString::fromUtf8("lineEdit_4"));
+
+        verticalLayout_3->addWidget(lineEdit_4);
 
         verticalSpacer = new QSpacerItem(20, 60, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -163,6 +175,8 @@ public:
     {
         Widget->setWindowTitle(QCoreApplication::translate("Widget", "DTM", nullptr));
         loadPoints->setText(QCoreApplication::translate("Widget", "Load points", nullptr));
+        label_4->setText(QCoreApplication::translate("Widget", "Set Z (insert point)", nullptr));
+        lineEdit_4->setText(QCoreApplication::translate("Widget", "200", nullptr));
         label->setText(QCoreApplication::translate("Widget", "Z_min [m]", nullptr));
         lineEdit->setText(QCoreApplication::translate("Widget", "0", nullptr));
         label_2->setText(QCoreApplication::translate("Widget", "Z_max [m]", nullptr));
